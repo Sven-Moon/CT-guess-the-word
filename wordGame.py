@@ -42,7 +42,7 @@ class Word:
                     "max": 60
                 }
         }
-    def __init__(self, difficulty) -> None:        
+    def __init__(self, difficulty="very easy") -> None:        
         self.rating = difficulty
         self.value = ""
         self.score = 0
@@ -53,7 +53,7 @@ class Word:
         data = json.load(f)
         self.score = randrange(self.ratings[self.rating]["min"],self.ratings[self.rating]["max"])        
         self.value = choice(data[str(self.score)])
-        print(self.value)
+        print(f'Testing mode for dummies like me: {self.value}')
         time.sleep(2)
 
 class Wordem:
@@ -67,7 +67,7 @@ class Wordem:
         self.guessesLeft = 7     
         self.known_positions = set()
         
-        self.word = Word(difficulty="very easy")
+        self.word = Word(difficulty)
         self.display_word = self.displayWord()
         self.runGame()
         
@@ -121,7 +121,7 @@ def main():
     "very hard",
     "expert",
     "master"]
-    print('Welcome to Wordem!'.center(40, "-"))
+    print(' Welcome to Wordem! '.center(40, "-"))
     print('')
     for i in range(len(difficulties)):
         print(f'[{i+1}]',f'{difficulties[i]}'.title(), end=" ")
